@@ -31,7 +31,6 @@ public class UserController {
             if (user != null) {
                 user.setScore(user.getScore() + 1);
                 userDAO.saveUser(user);
-                // Update currentUser with the latest score
                 currentUser = user;
             }
         }

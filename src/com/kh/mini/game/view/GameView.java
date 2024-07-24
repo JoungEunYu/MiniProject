@@ -77,6 +77,8 @@ public class GameView {
 		if (userController.register(id)) {
 			currentUser = userController.getUser(id);
 			System.out.println("회원가입에 성공했습니다. 로그인 해주세요");
+		} else {
+			System.out.println("중복된 아이디 입니다. 다시 입력해주세요");
 		}
 	}
 
@@ -89,11 +91,11 @@ public class GameView {
 			String input = reader.readLine();
 			if ("exit".equalsIgnoreCase(input)) {
 				inGame = false;
-			} else {
+			} else if("".equals(input)) {
 				userController.incrementScore(); // 점수 증가
 				// 점수 업데이트 후 현재 사용자 정보 갱신
 				currentUser = userController.getUser(currentUser.getId());
-			}
+			} else System.out.println("다시 입력하세요");
 		}
 		userController.saveScore(); // 점수 저장
 		userController.logout(); // 로그아웃 시점에서 리더보드 업데이트
